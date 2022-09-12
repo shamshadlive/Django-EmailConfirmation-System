@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Login
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+<h2>User Registrtation </h2>
+
+
+    <!-- User Registertation Form -->
+    <form id="UserRegForm" method="POST" action="">
+    
+
+        {{user_form.as_p}}     
+       
+        {% csrf_token %}
+
+        <button type="submit" id="Id_registerButton" class="btn btn-success m-2" > Register Now </button>
+
+    </form>
+
+
+
+
+
+
+
+
+
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">
+    x
+    </button>
+    <strong>{{message}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+    
+    <h6>
+        <a href="{% url 'home' %}">Go Home</a> <br>
+        
+    </h6>
+
+</div>
+{% endblock content %}

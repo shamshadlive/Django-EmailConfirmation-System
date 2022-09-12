@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Login
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+
+<div class="container">
+    <h2>User Login</h2>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+            <div class="container mb-2  form-floating">
+            <input name="inputUsername" type="text" class="form-control inputareast" id="inputUsername" placeholder="text">
+            <label style="color: #5e5e5e;" for="inputUsername">Username</label>
+            </div>
+
+            <div class="input-group mb-3">
+            <div class="container mb-2  form-floating">
+                <input name="inputPassword" type="password" class="form-control inputareast" id="inputPassword" placeholder="password" >
+                <label style="color: #5e5e5e;" for="inputPassword"> Password   </label>         
+
+      
+        <button type="submit" name = "create user" class="btn btn-success m-2">Login Now </button>
+
+    </form>
+
+</div>
+
+
+<br>
+
+
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible alert-success">
+<button type="button" class="close" data-dismiss="alert">
+x
+</button>
+<strong>{{message}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+<h6>
+    <a href="{% url 'home' %}">Go Home</a> <br>
+   
+</h6>
+
+{% endblock content %}
