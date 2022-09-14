@@ -14,7 +14,76 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 
 from .token import account_activation_token
+
+from django.http import JsonResponse
+import json
+
 # Create your views here.
+
+
+
+
+
+#check username
+def checkUsername(request):
+
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+      if request.method == 'POST':
+        getdata=json.load(request) 
+        id = getdata['id']
+        user_name = getdata['usernameCheck']
+        data = {
+            'id': id,
+            'is_taken': User.objects.filter(username=user_name).exists(),
+             }
+        return JsonResponse(data)
+    else:
+        return redirect('/')
+
+#check email
+def checkEmail(request):
+
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+      if request.method == 'POST':
+        getdata=json.load(request) 
+        id = getdata['id']
+        email_id = getdata['emailCheck']
+        data = {
+            'id': id,
+            'is_taken': User.objects.filter(email=email_id).exists(),
+             }
+        return JsonResponse(data)
+    else:
+        return redirect('/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -38,14 +107,14 @@ def register(request):
 
                 activateEmail(request, user, user_form.cleaned_data.get('email'))
 
-                messages.success(request, 'Please verify your mail to login')
+                messages.success(request, 'Please verify your e-mail to login')
+                
                 return redirect('login')
 
             else:
 
-                messages.error(request, 'Invalid form submission.')
-                messages.error(request, user_form.errors)
-            
+                messages.error(request, 'Please check all the field before submission')
+             
       
         context={'user_form': user_form}
 
@@ -53,7 +122,7 @@ def register(request):
 
 
 #login user
-def login(request):
+def user_login(request):
 
         if request.method == 'POST':
 
@@ -94,8 +163,7 @@ def activateEmail(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():
-        messages.success(request, f'Dear {user}, please go to you email{to_email}inbox and click on \
-            received activation link to confirm and complete the registration.Note: Check your spam folder.')
+       pass
     else:
         messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.')
 
