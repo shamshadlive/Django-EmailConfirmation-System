@@ -44,14 +44,6 @@ User Login
     
 
 
-
-
-
-
-
-
-
-
     
 
     <!-- main div for center align -->
@@ -59,7 +51,7 @@ User Login
 
       
 
-        <div class="container p-5 col-4 m-5" style="background-color: white; ">
+        <div class="container p-5 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 m-5" style="background-color: white; ">
             
             
 
@@ -119,15 +111,19 @@ User Login
             <div class="row">
                 <div class="input-group mb-3">
                     <span class="input-group-text " id="id_password1" style="background: none; border:none;"><i class="bi bi-shield-lock-fill fs-4"></i></span>
-                    <input style="z-index: 50;" id=" id_password1" name="password1" type="password" class="form-control inputfieldForm" placeholder="Password"  required aria-describedby=" id_password1">
+                    <input style="z-index: 50;" id="id__input_password1" name="password1" type="password" class="form-control inputfieldForm" placeholder="Password"  required aria-describedby=" id_password1">
+                
+                    <button style="border:none;" class="btn bi bi-eye-slash-fill" type="button" id="id__input_password1_passButton" onclick="togglebutton('id__input_password1')"></button>  
+                
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-group mb-3">
                     <span class="input-group-text " id="id_password2" style="background: none; border:none;"><i class="bi bi-shield-fill-check fs-4"></i></span>
-                    <input id=" id_password2" name="password2" type="password" class="form-control inputfieldForm" placeholder="Confirm Password"  required aria-describedby=" id_password2">
+                    <input id="id__input_password2" name="password2" type="password" class="form-control inputfieldForm" placeholder="Confirm Password"  required >
                    
+                    <button style="border:none;" class="btn bi bi-eye-slash-fill" type="button" id="id__input_password2_passButton" onclick="togglebutton('id__input_password2')"></button>  
                 </div>
                 <h6  class="form-text" style="color: red;"> {{user_form.password2.errors}}</h6>
             </div>
@@ -137,7 +133,7 @@ User Login
 
             <div class="d-flex justify-content-center mt-2">
             
-            <div class="row col-6">
+            <div class="row col-12">
                 <input type="submit" id="id_registerButton" class="btn p-3" style="background-color:#000000 ; color:#ffffff; font-variant: all-petite-caps;
                 font-size: medium;" disabled="disabled"  value="Register Now"> 
             </div>

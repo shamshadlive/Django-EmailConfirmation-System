@@ -8,7 +8,7 @@ Home
 {% block content %}
 
 
-Welcome back {{user.first_name}}
+<h1 >Welcome Back ! , {{request.user.first_name}}  <a  href="{% url 'logoutuser' %}"> (Logout) </a></h1> 
 
 
 

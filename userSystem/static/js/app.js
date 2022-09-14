@@ -16,6 +16,23 @@ $(document).ready(function(){
             $('#id_registerButton').removeAttr('disabled');
         }
     });
+
+
+    $('#UserLogForm input').keyup(function() {
+
+      var empty = false;
+      $('#UserLogForm input').each(function() {
+          if ($(this).val() == '') {
+              empty = true;
+          }
+      });
+
+      if (empty) {
+          $('#id_LOGButton').attr('disabled', 'disabled');
+      } else {
+          $('#id_LOGButton').removeAttr('disabled');
+      }
+  });
 });  
 
 
@@ -170,17 +187,44 @@ function getCookie(name) {
     {
         $("#id_first_name_Error").addClass("d-none");
        
-
     }
     else{
        
         //setting error
         $("#id_first_name_Error").removeClass("d-none");
-        $("#id_first_name_Error").addClass("text-success d-block  bi bi-check-circle");
-       
-         
+        $("#id_first_name_Error").addClass("text-success d-block  bi bi-check-circle");  
         }
       
     }
 
 
+    //toggle password button register
+
+    function togglebutton(id) {
+      var x = document.getElementById(id);
+      if (x.type === "password") {
+        x.type = "text";
+        document.getElementById(id+"_passButton").className = "btn bi bi-eye-fill";
+      } else {
+        x.type = "password";
+        document.getElementById("passtogglebutton2").className = "btn bi bi-eye-slash-fill";
+      }
+    }
+
+
+  //check both password
+    function checkpassword(){
+
+
+      if (document.getElementById('id_input_Password1').value ==
+      document.getElementById('id_input_Password2').value) {
+      document.getElementById('Input_Password_Error').style.color = 'green';
+      document.getElementById('Input_Password_Error').innerHTML = 'Perfect Match';
+      document.getElementById("Id_resetpsButton").disabled = false;
+  
+    } else {
+      document.getElementById('Input_Password_Error').style.color = 'red';
+      document.getElementById('Input_Password_Error').innerHTML = 'Password Not Matching';
+      document.getElementById("Id_resetpsButton").disabled = true;
+    }
+  }
