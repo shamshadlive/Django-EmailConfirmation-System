@@ -12,11 +12,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
-
+from django.core.mail import EmailMultiAlternatives
 from .token import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
+import datetime
 from django.urls import reverse
 # Create your views here.
 
@@ -153,9 +154,12 @@ def activateEmail(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http'
+        'protocol': 'https' if request.is_secure() else 'http',
+        'timestamp':datetime.datetime.now()
     })
-    email = EmailMessage(mail_subject, message, to=[to_email])
+    email = EmailMultiAlternatives(
+            mail_subject, '', '',  [to_email])
+    email.attach_alternative(message, "text/html")
     if email.send():
        pass
     else:
@@ -195,9 +199,13 @@ def resetPassword_Email(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http'
+        'protocol': 'https' if request.is_secure() else 'http',
+        'timestamp':datetime.datetime.now()
     })
-    email = EmailMessage(mail_subject, message, to=[to_email])
+    email = EmailMultiAlternatives(
+            mail_subject, '', '',  [to_email])
+    email.attach_alternative(message, "text/html")
+
     if email.send():
        pass
     else:

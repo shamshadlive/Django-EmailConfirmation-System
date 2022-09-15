@@ -1,6 +1,8 @@
 
 //disabling button until the all field filled
 $(document).ready(function(){
+
+  //disabling button until the all field filled
     $('#UserRegForm input').keyup(function() {
 
         var empty = false;
@@ -17,7 +19,7 @@ $(document).ready(function(){
         }
     });
 
-
+//disabling button until the all field filled
     $('#UserLogForm input').keyup(function() {
 
       var empty = false;
@@ -33,6 +35,48 @@ $(document).ready(function(){
           $('#id_LOGButton').removeAttr('disabled');
       }
   });
+
+//setting processing showing on button
+  $('#UserRegForm').on('submit', function(){
+
+    $("#id_registerButton").prop('value', 'Processing…');
+    $('#id_registerButton').attr('disabled', 'disabled');
+
+   
+});
+
+$('#UserLogForm').on('submit', function(){
+
+  $("#id_LOGButton").prop('value', 'Processing…');
+  $('#id_LOGButton').attr('disabled', 'disabled');
+
+ 
+});
+
+
+$('#resendemailForm').on('submit', function(){
+
+  $("#Id_resendemailForm").prop('value', 'Processing…');
+  $('#Id_resendemailForm').attr('disabled', 'disabled');
+
+ 
+});
+
+$('#fromResetPassword').on('submit', function(){
+
+  $("#Id_fromResetPassword").prop('value', 'Processing…');
+  $('#Id_fromResetPassword').attr('disabled', 'disabled');
+ 
+
+ 
+});
+
+
+
+
+
+
+
 });  
 
 

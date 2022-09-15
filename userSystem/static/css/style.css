@@ -15,3 +15,14 @@
     letter-spacing: 0.1rem;
 }
     
+.buttonBgBlack{
+    background-color: rgb(0, 0, 0);
+}
+
+.bottom_font{
+
+  
+    font-family: poppins;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+}
