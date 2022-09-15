@@ -1,4 +1,4 @@
-# Django-EmailConfirmation-System
+# This is a perfect User Registration and Login system With Email verification
 
  User Login Interface 
 
