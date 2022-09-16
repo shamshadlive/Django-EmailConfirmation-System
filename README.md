@@ -54,13 +54,13 @@ Creating email format for sending request in views.py
  
 #here handles the link that user clicked from email for activating in views.py
 
-def activate(request, uidb64, token):
-    User = get_user_model()
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
+    def activate(request, uidb64, token):
+        User = get_user_model()
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
     if user is not None and account_activation_token.check_token(user, token):
     
         #making user active
@@ -75,7 +75,7 @@ def activate(request, uidb64, token):
     
     
     
-    IN settings.py  for sening mail from gmail
+IN settings.py  for sening mail from gmail
     
     # Emailing settings
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
